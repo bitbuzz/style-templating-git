@@ -6,7 +6,48 @@
         xmlns:local="clr-namespace:StylingTemplating"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+	<Window.Resources>
+
+	</Window.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition Height="Auto"></RowDefinition>
+		</Grid.RowDefinitions>
+
+		<TextBox Grid.Row="0" x:Name="txtBox0" Margin="4" Text="Testing 1, 2, 3..." BorderBrush="Black" Style="{StaticResource TextBoxStyle}">
+		
+		</TextBox>
+
+		<TextBox Grid.Row="1" x:Name="txtBox1" Margin="4" Text="Testing 1, 2, 3..." BorderBrush="Black" >
+			<TextBox.Style>
+				<Style TargetType="TextBox">
+					<Style.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Foreground" Value="{StaticResource redResource}" />
+							<Setter Property="Background" Value="{StaticResource blackResource}" />
+						</Trigger>
+						<EventTrigger RoutedEvent="MouseEnter">
+							<EventTrigger.Actions>
+								<BeginStoryboard>
+									<Storyboard>
+										<DoubleAnimation Duration="0:0:1.0" Storyboard.TargetProperty="FontSize" To="28" />
+									</Storyboard>
+								</BeginStoryboard>
+							</EventTrigger.Actions>
+						</EventTrigger>
+						<EventTrigger RoutedEvent="MouseLeave">
+							<EventTrigger.Actions>
+								<BeginStoryboard>
+									<Storyboard>
+										<DoubleAnimation Duration="0:0:1.0" Storyboard.TargetProperty="FontSize" To="12" />
+									</Storyboard>
+								</BeginStoryboard>
+							</EventTrigger.Actions>
+						</EventTrigger>
+					</Style.Triggers>
+				</Style>
+			</TextBox.Style>
+		</TextBox>
+	</Grid>
 </Window>
